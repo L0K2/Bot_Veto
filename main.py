@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 
-TOKEN = "OTM4OTA5NTQ4NTExNjI1MjY2.YfxJqA.plPFW7w9CG1gyt0A4IlVaU02AJ8"
+TOKEN = ""
 
 client = commands.Bot(command_prefix='!')
 
@@ -27,6 +27,7 @@ async def veto(ctx):
 
 @client.command()
 async def ban(ctx,arg):
+        ban1 = []
         num_de_ban = 0
         if num_de_ban == 0:
             mapas.remove(arg)
