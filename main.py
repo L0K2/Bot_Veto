@@ -25,20 +25,18 @@ async def veto(ctx):
 
 
 
+
 @client.command()
 async def ban(ctx,arg):
-        ban1 = []
-        num_de_ban = 0
-        if num_de_ban == 0:
+    while len(mapas) > 1:
             mapas.remove(arg)
             ban1 = mapas
-            num_de_ban = num_de_ban + 1
             await ctx.send("Os mapas restantes são: ")
-            await ctx.send(ban1)
+            await ctx.send(mapas)
             await ctx.send("Qual mapa remover:")
-        if len(mapas) == 1:
-            num_de_ban = 2
+    else:
             await ctx.send("O mapa jogado será: ", mapas)
+
 
 
 
