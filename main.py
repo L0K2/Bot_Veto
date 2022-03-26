@@ -19,23 +19,26 @@ async def teste(ctx):
 
 @client.command()
 async def veto(ctx):
-    mapas = mapas_save
+    mapas = mapas_save #problema: mapas n definido
     await ctx.send('O map pool é: Inferno, Mirage, Nuke, Overpass, Dust2, Vertigo, Ancient')
     await ctx.send('Qual mapa remover(!ban + Nome do mapa): ')
 
 
 
 
-@client.command()
+@client.command() #problema: bot lê suas próprias msg/ não termina o codigo
 async def ban(ctx,arg):
+    if ctx.author == client.user:
+        return
     while len(mapas) > 1:
             mapas.remove(arg)
-            ban1 = mapas
             await ctx.send("Os mapas restantes são: ")
             await ctx.send(mapas)
             await ctx.send("Qual mapa remover:")
-    else:
-            await ctx.send("O mapa jogado será: ", mapas)
+            await ctx.send(len(mapas))
+    if len(mapas) == 1:
+            await ctx.send("O mapa jogado será:  {mapas}")
+
 
 
 
