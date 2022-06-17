@@ -37,7 +37,7 @@ async def ban(ctx,arg):
             await ctx.send("Qual mapa remover:")
             await ctx.send(len(mapas))
     if len(mapas) == 1:
-            await ctx.send("O mapa jogado será:  {mapas}")
+            await ctx.send(f"O mapa jogado será:  {mapas}")
 
 
 
