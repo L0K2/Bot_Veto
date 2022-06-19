@@ -15,7 +15,7 @@ async def on_ready():
 
 @client.command()
 async def teste(ctx):
-    await ctx.send('O bot foi testado')
+    await ctx.send(f"{ctx.author.mention}O bot foi testado")
 
 @client.command()
 async def veto(ctx):
@@ -32,6 +32,7 @@ async def ban(ctx,arg):
         return
     while len(mapas) > 1:
             mapas.remove(arg)
+            await ctx.send(f"{ctx.author.mention} Removeu {arg}")
             await ctx.send("Os mapas restantes são: ")
             await ctx.send(mapas)
             await ctx.send("Qual mapa remover:")
