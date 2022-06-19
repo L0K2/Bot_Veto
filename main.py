@@ -26,7 +26,7 @@ async def veto(ctx):
 
 
 
-@client.command() #problema: bot lê suas próprias msg
+@client.command() 
 async def ban(ctx,arg):
     if ctx.author == client.user:
         return
