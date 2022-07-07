@@ -59,13 +59,17 @@ async def pick(ctx,arg):
     if veto_count == 2:
         index = mapas.index(arg)
         main.team1_pick = main.mapas.pop(index)
-        await ctx.send(f"O time de {ctx.author.mention}, escolheu ",main.team1_pick)
+        await ctx.send(f"O time de {ctx.author.mention} Escolheu: ")
+        await ctx.send(main.team1_pick)
         main.veto_count = main.veto_count + 1
+        await ctx.send(f"Time 2 Escolha um mapa: {main.mapas}")
     if veto_count == 3:
         index = mapas.index(arg)
         main.team2_pick = main.mapas.pop(index)
-        await ctx.send(f"O time de {ctx.author.mention}, escolheu ",main.team2_pick)
+        await ctx.send(f"O time de {ctx.author.mention} Escolheu: ")
+        await ctx.send(main.team2_pick)
         main.veto_count = main.veto_count + 1
+        await ctx.send(f"Time 1 continue os vetos: {main.mapas}")
     else:
         await ctx.send(f"{ctx.author.mention} Você precisa banir um mapa antes!")
 
@@ -74,27 +78,15 @@ async def pick(ctx,arg):
 async def ban(ctx,arg):
     if ctx.author == client.user:
         return
-    if veto_count == 2:
-        await ctx.send(f"{ctx.author.mention} Você precisa escolher um mapa agora!")
-        return
-    if veto_count == 3:
-        await ctx.send(f"{ctx.author.mention} Você precisa escolher um mapa agora!")
-        return
-    else:
-        if md1 == 1:
-            while len(mapas) > md1:
-                    mapas.remove(arg)
-                    main.veto_count = main.veto_count + 1
-                    await ctx.send(veto_count)
-                    await ctx.send(f"{ctx.author.mention} Removeu {arg}")
-                    await ctx.send("Os mapas restantes são: ")
-                    await ctx.send(mapas)
-                    if len(mapas) != md1:
-                        await ctx.send("Qual mapa remover:")
-            if len(mapas) == md1:
-                        await ctx.send(f"O mapa jogado será:  {mapas}")
-                        restart()
-
+    if md1 == 3:
+        if veto_count == 2:
+                await ctx.send(f"{ctx.author.mention} Você precisa escolher um mapa agora!")
+                print(".")
+        else:
+            print(".")
+        if veto_count == 3:
+                await ctx.send(f"{ctx.author.mention} Você precisa escolher um mapa agora!")
+                print(".")
         else:
             while len(mapas) > 1:
                 mapas.remove(arg)
@@ -103,12 +95,31 @@ async def ban(ctx,arg):
                 await ctx.send("Os mapas restantes são: ")
                 await ctx.send(mapas)
                 if len(mapas) != 1:
-                    await ctx.send("Qual mapa remover:")
+                    if veto_count == 1:
+                        await ctx.send("Qual mapa remover:")
+                    if veto_count == 2:
+                        await ctx.send("Escolha Um mapa:")
+                    if veto_count == 3:
+                        await ctx.send("Escolha Um mapa:")
+                    if veto_count > 3:
+                        await ctx.send("Qual mapa remover:")
             if len(mapas) == 1:
                 await ctx.send(f"O primeiro mapa de escolha do time 1 será: {main.team1_pick}")
                 await ctx.send(f"O Segundo mapa de escolha do time 2 será: {main.team2_pick}")
                 await ctx.send(f"O terceiro mapa, caso necessário será: {main.mapas}")
                 restart()
+    else:
+            while len(mapas) > md1:
+                    mapas.remove(arg)
+                    main.veto_count = main.veto_count + 1
+                    await ctx.send(f"{ctx.author.mention} Removeu {arg}")
+                    await ctx.send("Os mapas restantes são: ")
+                    await ctx.send(mapas)
+                    if len(mapas) != md1:
+                        await ctx.send("Qual mapa remover:")
+            if len(mapas) == md1:
+                        await ctx.send(f"O mapa jogado será:  {mapas}")
+                        restart()
 
 
 
